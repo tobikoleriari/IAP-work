@@ -11,16 +11,19 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+<div class="row align-items-md-stretch">
+      <div class="col-md-6 m-5" >
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+    <!-- <div class="container col-lg-6"> -->
         <form action="" method post>
             <h1>Sign up</h1>
 
-            <label for="name" class="form-label"> Full Name</label>
+            <label for="name" class="form-label" > Full Name</label>
             <div class="mb-1 input-group">
                 <span class="input-group-text">
                     <i class="bi bi-person-vcard"></i>
                 </span>
-                <input type="text" id="fullname" class="form-control" required>
+                <input type="text" id="fullname" class="form-control" placeholder="Enter full name" required>
             </div>
 
             <label for="username" class="form-label">Username</label>
@@ -28,14 +31,14 @@
                 <span class="input-group-text">
                     <i class="bi bi-person-fill"></i>
                 </span>
-                <input type="text" id="username" class="form-control" required>
+                <input type="text" id="username" class="form-control" placeholder="Enter Username" required>
             </div>
             <label for="email" class="form-label">Email</label>
             <div class="mb-1 input-group">
                 <span class="input-group-text">
                     <i class="bi bi-envelope-fill"></i>
                 </span>
-                <input type="email" id="email" class="form-control" required>
+                <input type="email" id="email" class="form-control" placeholder="Enter email" required>
             </div>
 
             <label for="password" class="form-label">Password</label>
@@ -43,7 +46,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-lock-fill"></i>
                 </span>
-                <input type="password" id="password" class="form-control" required>
+                <input type="password" id="password" class="form-control" placeholder="Enter Password"required>
             </div>
             <label for="gender id" class="form-label">Gender</label>
             <div class="mb-1 input-group">
@@ -69,6 +72,8 @@
             <div class="mb-4 text-center">
                 <button type="submit" class="btn-secondary bd-0">Sign Up</button>
             </div>
+    </div>
+    </div>
     </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
