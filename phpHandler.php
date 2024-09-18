@@ -7,11 +7,11 @@ public function __construct($pdo){
     $this->db = $pdo;
 }
 //insert user data
-public function insertData($name, $email, $password){
+public function insertData($name, $email, $username, $password){
     $hashedPassword= password_hash($password,PASSWORD_BCRYPT);
-    $sql = "INSERT INTO users(name, email, password) VALUES(:name, :email, :password)";
+    $sql = "INSERT INTO users(name, email, username, password) VALUES(:name, :email, :username, :password)";
     $stmt = $this->db->prepare($sql);
-    $stmt->execute(['name' => $name, 'email' => $email, 'password' => $hashedPassword]);
+    $stmt->execute(['name' => $name, 'email' => $email, 'username' => $username, 'password' => $hashedPassword]);
     return true;
 
 }
@@ -22,4 +22,6 @@ $stmt=$this->db->prepare($sql);
 $stmt->execute;
 return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 }
+?>

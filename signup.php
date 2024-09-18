@@ -48,7 +48,7 @@
                 </span>
                 <input type="password" id="password" class="form-control" placeholder="Enter Password"required>
             </div>
-            <label for="gender id" class="form-label">Gender</label>
+            <!-- <label for="gender id" class="form-label">Gender</label>
             <div class="mb-1 input-group">
                 <span class="input-group-text">
                     <i class="bi bi-gender-female"></i>
@@ -68,7 +68,7 @@
                     <option value="1">Student</option>
                     <option value="2">Teacher</option>
                 </select>
-            </div>
+            </div> -->
             <div class="mb-4 text-center">
                 <button type="submit" class="btn-secondary bd-0">Sign Up</button>
             </div>
