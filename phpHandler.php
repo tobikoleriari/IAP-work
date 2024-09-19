@@ -1,10 +1,11 @@
 <?php
+require_once 'db.php';
 class phpHandler{
     private $db;
 
    // Constructor 
-public function __construct($pdo){
-    $this->db = $pdo;
+public function __construct($conn){
+    $this->db = $conn;
 }
 //insert user data
 public function insertData($name, $email, $username, $password){

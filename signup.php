@@ -15,7 +15,7 @@
       <div class="col-md-6 m-5" >
         <div class="h-100 p-5 text-bg-dark rounded-3">
     <!-- <div class="container col-lg-6"> -->
-        <form action="" method post>
+        <form action="signupHandler.php" method post>
             <h1>Sign up</h1>
 
             <label for="name" class="form-label" > Full Name</label>
