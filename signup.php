@@ -15,7 +15,7 @@
       <div class="col-md-6 m-5" >
         <div class="h-100 p-5 text-bg-dark rounded-3">
     <!-- <div class="container col-lg-6"> -->
-        <form action="signupHandler.php" method post>
+        <form action="signupHandler.php" method ="POST">
             <h1>Sign up</h1>
 
             <label for="name" class="form-label" > Full Name</label>
@@ -23,7 +23,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-person-vcard"></i>
                 </span>
-                <input type="text" id="fullname" class="form-control" placeholder="Enter full name" required>
+                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter full name" required>
             </div>
 
             <label for="username" class="form-label">Username</label>
@@ -31,14 +31,14 @@
                 <span class="input-group-text">
                     <i class="bi bi-person-fill"></i>
                 </span>
-                <input type="text" id="username" class="form-control" placeholder="Enter Username" required>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
             </div>
             <label for="email" class="form-label">Email</label>
             <div class="mb-1 input-group">
                 <span class="input-group-text">
                     <i class="bi bi-envelope-fill"></i>
                 </span>
-                <input type="email" id="email" class="form-control" placeholder="Enter email" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
             </div>
 
             <label for="password" class="form-label">Password</label>
@@ -46,7 +46,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-lock-fill"></i>
                 </span>
-                <input type="password" id="password" class="form-control" placeholder="Enter Password"required>
+                <input type="password" id="password" name= "password" class="form-control" placeholder="Enter Password"required>
             </div>
             <!-- <label for="gender id" class="form-label">Gender</label>
             <div class="mb-1 input-group">
