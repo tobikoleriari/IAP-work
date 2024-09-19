@@ -15,11 +15,27 @@ class phpHandler
     //insert user data
     public function insertData($name, $email, $username, $password)
     {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO users(fullname, username, email, password) VALUES(:fullname, :username, :email, :password)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute(['fullname' => $name, 'email' => $email, 'username' => $username, 'password' => $hashedPassword]);
-        return true;
+        try {
+            // Check if username or email already exists
+            $sql = "SELECT COUNT(*) FROM users WHERE username = :username OR email = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['username' => $username, 'email' => $email]);
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                return "Error: Username or email already exists!";
+            }
+
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $sql = "INSERT INTO users(fullname, username, email, password) VALUES(:fullname, :username, :email, :password)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(['fullname' => $name, 'email' => $email, 'username' => $username, 'password' => $hashedPassword]);
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
     // OBTAIN USER DATA
     public function fetchData()
@@ -32,4 +48,3 @@ class phpHandler
         header('Location: phpHandler.php');
     }
 }
-?>
