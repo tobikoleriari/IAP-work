@@ -8,6 +8,8 @@ if($_SERVER['REQUEST METHOD']=='POST'){
     $email=$_POST['email'];
     $username=$_POST['username'];
     $password=$_POST['password'];
-}
+
 $user=new phpHandler($conn);
 $user->insertData($name,$email,$username,$password);
+}
+?>
