@@ -1,3 +1,8 @@
+<?php
+class signup{
+    public function signUpForm(){
+        ?>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,3 +88,6 @@
 </body>
 
 </html>
+<?php
+}
+}
