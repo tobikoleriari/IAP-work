@@ -12,13 +12,26 @@ class Signup {
     <title>Signup</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .signup-section, .image-section {
+            background-color: #343a40; /* Same background for both sections */
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
 <div class="row align-items-md-stretch">
-    <div class="col-md-6 m-5">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-            <form action="signupHandler.php" method="POST">
+    <div class="col-md-6 m-5 signup-section">
+        <div class="h-100 p-5 rounded-3">
+            <form action="#" method="POST">
                 <h1>Sign up</h1>
 
                 <label for="fullname" class="form-label">Full Name</label>
@@ -57,10 +70,17 @@ class Signup {
                     <button type="submit" class="btn btn-secondary">Sign Up</button>
                 </div>
             </form>
+            <div class="col-md-4 m-5 image-section">
+        <img src="images/porsche.jpg" alt="Signup Image">
+    </div>
         </div>
     </div>
+
+    <!-- Image Section -->
+   
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5pN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
