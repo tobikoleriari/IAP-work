@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+class Nav{
+    public function NavBar(){
+        ?>
+        <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 <head>
     <meta charset="UTF-8">
@@ -48,3 +52,7 @@
    
 </body>
 </html>
+<?php
+    }
+}
+?>
