@@ -70,10 +70,10 @@ class Signup {
                     <button type="submit" class="btn btn-secondary">Sign Up</button>
                 </div>
             </form>
-            <div class="col-md-4 m-5 image-section">
-        <img src="images/porsche.jpg" alt="Signup Image">
-    </div>
         </div>
+    </div>
+    <div class="col-md-4 m-5 image-section">
+        <img src="images/porsche.jpg" alt="Signup Image">
     </div>
 
     <!-- Image Section -->
