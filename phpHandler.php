@@ -40,7 +40,7 @@ class phpHandler
     // OBTAIN USER DATA
     public function fetchData()
     {
-        $sql = "SELECT* FROM users";
+        $sql = "SELECT * FROM users";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

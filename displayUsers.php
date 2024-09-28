@@ -21,30 +21,27 @@ $users=$user->fetchData();
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Fullname</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <?php
+    if($users){
+      foreach ($users as $user){
+ echo"<tr>
+  <th scope='row'>{$user['userId']}</th>
+  <td>{$user['fullname']}</td>
+  <td>{$user['username']}</td>
+  <td>{$user['email']}</td>
+</tr>";
+
+      }
+    }
+?>
+    
   </tbody>
 </table>
 </body>
