@@ -1,7 +1,9 @@
 <?php
 require_once 'phpHandler.php';
-
-$conn=new PDO('mysql:host=localhosst;dbname=iap-work','root','');
+require_once 'db.php';
+class display{
+function displayUsers(){
+$conn=new PDO('mysql:host=localhost;dbname=iap-work','root','');
 $user =new phpHandler($conn);
 $users=$user->fetchData();
 ?>
@@ -30,7 +32,7 @@ $users=$user->fetchData();
       <th scope="row">1</th>
       <td>Mark</td>
       <td>Otto</td>
-      <td>@mdo</td>
+      <td></td>
     </tr>
     <tr>
       <th scope="row">2</th>
@@ -47,3 +49,7 @@ $users=$user->fetchData();
 </table>
 </body>
 </html>
+<?php
+}
+}
+?>

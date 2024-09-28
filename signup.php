@@ -14,7 +14,7 @@ class Signup {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         .signup-section, .image-section {
-            background-color: #343a40; /* Same background for both sections */
+            /* background-color: #343a40; */
             color: white;
             padding: 2rem;
             border-radius: 10px;
@@ -23,6 +23,9 @@ class Signup {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
+        }
+        .signup-section {
+            background-color: #343a40;
         }
     </style>
 </head>
