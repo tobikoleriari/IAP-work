@@ -27,7 +27,7 @@ class phpHandler
             }
 
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO users(fullname, username, email, password) VALUES(:fullname, :username, :email, :password)";
+            $sql = "INSERT INTO users(fullname,email, username, password) VALUES(:fullname, :email, :username, :password)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute(['fullname' => $name, 'email' => $email, 'username' => $username, 'password' => $hashedPassword]);
 
