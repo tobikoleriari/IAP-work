@@ -29,12 +29,24 @@ class Signup {
         }
     </style>
 </head>
+<!-- <div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer" aria-live="polite" aria-atomic="true">
+    <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            User successfully registered!
+            </div>
+    </div>
+</div> -->
+
 
 <body>
 <div class="row align-items-md-stretch">
     <div class="col-md-6 m-5 signup-section">
         <div class="h-100 p-5 rounded-3">
-            <form action="#" method="POST">
+            <form action="signupHandler.php" method="POST">
                 <h1>Sign up</h1>
 
                 <label for="fullname" class="form-label">Full Name</label>

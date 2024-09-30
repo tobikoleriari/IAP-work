@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 
 require_once 'db.php';
 require_once 'phpHandler.php';
+require_once 'signup.php';
 $conn = new PDO('mysql:host=localhost;dbname=iap-work', 'root', '');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
