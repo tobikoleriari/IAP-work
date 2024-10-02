@@ -1,56 +1,72 @@
-<?php
-class auth{
-    public function signup($conn, $ObjGlob){
-        if(isset($_POST["signup"])){
-
+class auth {
+    public function signup($conn, $ObjGlob) {
+        if (isset($_POST["signup"])) {
             $errors = array();
+            
+            // Sanitize inputs
+            $fullname = $_SESSION["fullname"] = ucwords(strtolower(trim($_POST["fullname"])));
+            $email_address = $_SESSION["email_address"] = strtolower(trim($_POST["email_address"]));
+            $username = $_SESSION["username"] = strtolower(trim($_POST["username"]));
 
-            $fullname = $_SESSION["fullname"] = $conn->escape_values(ucwords(strtolower($_POST["fullname"])));
-            $email_address = $_SESSION["email_address"] = $conn->escape_values(strtolower($_POST["email_address"]));
-            $username = $_SESSION["username"] = $conn->escape_values(strtolower($_POST["username"]));
+            // Validate full name (letters, spaces, apostrophes, dashes)
+            if (!preg_match("/^[a-zA-Z\s'-]+$/", $fullname)) {
+                $errors['name_err'] = "Full name must contain only letters, spaces, apostrophes, or dashes.";
+            }
 
-// Implement input validation and error handling
-// =============================================
-// Sanitize all inputs
+            // Validate email format
+            if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
+                $errors['email_format_err'] = "Invalid email format.";
+            }
 
-// verify that the fullname has only letters, space, dash, quotation
-if(ctype_alpha(str_replace(" ", "", str_replace("\'", "", $fullname))) === FALSE){
-    $errors['nameLetters_err'] = "Invalid name format: Full name must contain letters and spaces only etc " . $fullname;
+            // Check if email domain is valid
+            $conf['valid_domains'] = ["strathmore.edu", "gmail.com", "yahoo.com", "mada.co.ke", "outlook.com"];
+            $arr_email_address = explode("@", $email_address);
+            $spot_dom = strtolower(end($arr_email_address));
+
+            if (!in_array($spot_dom, $conf['valid_domains'])) {
+                $errors['mailDomain_err'] = "Invalid email domain. Use: " . implode(", ", $conf['valid_domains']);
+            }
+
+            // Check if email already exists
+            $stmt = $conn->prepare("SELECT email FROM users WHERE email = ? LIMIT 1");
+            $stmt->bind_param("s", $email_address);
+            $stmt->execute();
+            $stmt->store_result();
+            if ($stmt->num_rows > 0) {
+                $errors['mailExists_err'] = "Email already exists.";
+            }
+
+            // Check if username already exists
+            $stmt = $conn->prepare("SELECT username FROM users WHERE username = ? LIMIT 1");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $stmt->store_result();
+            if ($stmt->num_rows > 0) {
+                $errors['usernameExists_err'] = "Username already exists.";
+            }
+
+            // Validate username (letters only)
+            if (!ctype_alpha($username)) {
+                $errors['username_err'] = "Username must contain only letters.";
+            }
+
+            // Process form if no errors
+            if (!count($errors)) {
+                $cols = ['fullname', 'email', 'username'];
+                $vals = [$fullname, $email_address, $username];
+                $data = array_combine($cols, $vals);
+                $insert = $conn->insert('users', $data);
+                
+                if ($insert) {
+                    header('Location: signup.php');
+                    unset($_SESSION["fullname"], $_SESSION["email_address"], $_SESSION["username"]);
+                    exit();
+                } else {
+                    die($insert);
+                }
+            } else {
+                $ObjGlob->setMsg('errors', $errors, 'invalid');
+            }
+        }
+    }
 }
-
-// verify that the email has got the correct format
-if(!filter_var($email_address, FILTER_VALIDATE_EMAIL)){
-    $errors['email_format_err'] = 'Wrong email format';
-}
-
-// verify that the email domain is authorized (@strathmore.edu, @gmail.com, @yahoo.com, @mada.co.ke) and not (@yanky.net)
-$conf['valid_domains'] = ["strathmore.edu", "gmail.com", "yahoo.com", "mada.co.ke", "outlook.com", "STRATHMORE.EDU", "GMAIL.COM", "YAHOO.COM", "MADA.CO.KE", "OUTLOOK.COM"];
-
-$arr_email_address = explode("@", $email_address);
-$spot_dom = end($arr_email_address);
-$spot_user = reset($arr_email_address);
-
-if(!in_array($spot_dom, $conf['valid_domains'])){
-    $errors['mailDomain_err'] = "Invalid email address domain. Use only: " . implode(", ", $conf['valid_domains']);
-}
-$exist_count = 0;
-// Verify Email Already Exists
-$spot_email_address_res = $conn->count_results(sprintf("SELECT email FROM users WHERE email = '%s' LIMIT 1", $email_address));
-if ($spot_email_address_res > $exist_count){
-    $errors['mailExists_err'] = "Email Already Exists";
-}
-
-// Verify Username Already Exists
-$spot_username_res = $conn->count_results(sprintf("SELECT username FROM users WHERE username = '%s' LIMIT 1", $username));
-if ($spot_username_res > $exist_count){
-    $errors['usernameExists_err'] = "Username Already Exists";
-}
-
-// Verify if username contain letters only
-if (!ctype_alpha($username)) {
-    $errors['usernameLetters_err'] = "Invalid username format. Username must contain letters only";
-    $ObjGlob->setMsg('errors', $errors, 'invalid');
-}
-}}}
-
-?>
