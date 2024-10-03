@@ -33,7 +33,7 @@ public function SendMail(){
                 'password' => $password
             ];
     //Load Composer's autoloader
-    require 'plugins/PHPMailer/vendor/autoload.php';
+    // require 'plugins/PHPMailer/vendor/autoload.php';
     
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
@@ -51,12 +51,12 @@ public function SendMail(){
     
         //Recipients
         $mail->setFrom('tobikoleriari69@gmail.com', 'Test ICS');
-        $mail->addAddress($mailMsg['to_email'], $mailMsg['to_name']);     //Add a recipient
+        $mail->addAddress($email);     //Add a recipient
     
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $mailMsg['subject'];
-        $mail->Body    = nl2br($mailMsg['message']);
+        $mail->Subject = 'TOBIKO OTP';
+        $mail->Body    = 'Your OTP is: ' . $otp;
     
         $mail->send();
         echo 'Message has been sent';
