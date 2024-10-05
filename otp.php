@@ -67,6 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" class="form-control" placeholder="Enter OTP" id="otp" name="otp" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Verify</button>
+        <div class="mt-1">
+        <button type="submit" class="btn btn-primary w-100">Resend OTP</button>
+        </div>
+        
     </form>
 </div>
 
