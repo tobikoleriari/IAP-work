@@ -82,7 +82,7 @@ class Signup {
                 </div>
 
                 <div class="mb-4 text-center">
-                    <button type="submit" class="btn btn-secondary">Sign Up</button>
+                    <button type="submit" name='signup' class="btn btn-secondary">Sign Up</button>
                 </div>
             </form>
         </div>
