@@ -13,7 +13,7 @@ class phpHandler
         $this->db = $conn;
     }
     //insert user data
-    public function insertData($name, $email, $username, $password)
+    public function insertData($fullname,$username, $email, $password)
     {
         try {
             // Check if username or email already exists
@@ -27,9 +27,9 @@ class phpHandler
             }
 
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO users(fullname,email, username, password) VALUES(:fullname, :email, :username, :password)";
+            $sql = "INSERT INTO users(fullname,username,email, password) VALUES(:fullname,:username, :email, :password)";
             $stmt = $this->db->prepare($sql);
-            $stmt->execute(['fullname' => $name, 'email' => $email, 'username' => $username, 'password' => $hashedPassword]);
+            $stmt->execute(['fullname' => $fullname,'username' => $username, 'email' => $email, 'password' => $hashedPassword]);
 
             return true;
         } catch (PDOException $e) {
