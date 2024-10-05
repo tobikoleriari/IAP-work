@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+// Error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Check if the form was submitted via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_otp = trim($_POST['otp']); // Get the OTP entered by the user
+
+    // Check if the entered OTP matches the session OTP
+    if ($user_otp == $_SESSION['otp']) {
+        // Include the User class and proceed to user creation
+        require_once 'User.php';
+
+        // Get the user data from the session
+        $user_data = $_SESSION['user_data'];
+        $user = new User();
+
+        // Create the user in the database
+        if ($user->createUser($user_data['username'], $user_data['email'], $user_data['password'])) {
+            // User successfully created, clear session and redirect
+            unset($_SESSION['otp']); // Clear the OTP from the session
+            unset($_SESSION['user_data']); // Clear user data from the session
+            header("Location: ViewUsers.html"); // Redirect to the user view page
+            exit;
+        } else {
+            echo "<p class='error'>Error registering user.</p>";
+        }
+    } else {
+        // If the OTP does not match, display an error
+        echo "<p class='error'>Invalid OTP. Please try again.</p>";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,23 +57,3 @@
 </body>
 </html>
 
-<?php
-session_start();
-
-// if(isset($_POST['otp'])){
-//     $otp = $_POST['otp'];
-//     if($otp == $_SESSION['otp']){
-//         echo "OTP verified";
-//     }else{
-//         echo "OTP not verified";
-//     }
-// }
-
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $user_otp = $_POST['otp'];
-   
-    }
-    if($user_otp == $_SESSION['otp']){
-        require_once 'displayUsers.php';
-    }
