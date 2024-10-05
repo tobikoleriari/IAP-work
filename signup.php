@@ -46,7 +46,7 @@ class Signup {
 <div class="row align-items-md-stretch">
     <div class="col-md-6 m-5 signup-section">
         <div class="h-100 p-5 rounded-3">
-            <form action="signupHandler.php" method="POST">
+            <form action="sendMail.php" method="POST">
                 <h1>Sign up</h1>
 
                 <label for="fullname" class="form-label">Full Name</label>
