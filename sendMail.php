@@ -1,17 +1,19 @@
 <?php
-// Start the session
-session_start(); // Start the session
+
 require 'C:\xampp\htdocs\PHPMailer\src\PHPMailer.php';
 require 'C:\xampp\htdocs\PHPMailer\src\SMTP.php';
 require 'C:\xampp\htdocs\PHPMailer\src\Exception.php';
-// require 'C:/xampp/htdocs/PHPMailer/src/OAuth.php';
-
+require 'C:\xampp\htdocs\PHPMailer\src\OAuth.php';
+// require 'C:/xampp/htdocs/PHPMailer/src/PHPMailer.php';
+// require 'C:/xampp/htdocs/PHPMailer/src/SMTP.php';
+// require 'C:/xampp/htdocs/PHPMailer/src/Exception.php';
+require 'vendor\autoload.php';
 
 //Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
+session_start(); 
 class SendMail{
 
 //These must be at the top of your script, not inside a function
@@ -59,10 +61,11 @@ public function SendMail(){
         $mail->Body    = 'Your OTP is: ' . $otp;
     
         $mail->send();
-        echo 'Message has been sent';
-    } catch (Exception $e) {
-        die("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
-    }
+                    header("Location: otp.php");
+                    exit;
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
 }
 }
 }
