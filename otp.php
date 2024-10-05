@@ -9,21 +9,21 @@ ini_set('display_errors', 1);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_otp = trim($_POST['otp']); // Get the OTP entered by the user
 
-    // Check if the entered OTP matches the session OTP
+   
     if ($user_otp == $_SESSION['otp']) {
-        // Include the User class and proceed to user creation
-        require_once 'User.php';
-
+        
+        require_once 'Users.php';
+     
         // Get the user data from the session
         $user_data = $_SESSION['user_data'];
-        $user = new User();
+        $user = new Users();
 
         // Create the user in the database
-        if ($user->createUser($user_data['username'], $user_data['email'], $user_data['password'])) {
+        if ($user->createUser($user_data['fullname'],$user_data['username'], $user_data['email'], $user_data['password'])) {
             // User successfully created, clear session and redirect
             unset($_SESSION['otp']); // Clear the OTP from the session
             unset($_SESSION['user_data']); // Clear user data from the session
-            header("Location: ViewUsers.html"); // Redirect to the user view page
+            header("Location: userTable.php"); 
             exit;
         } else {
             echo "<p class='error'>Error registering user.</p>";
