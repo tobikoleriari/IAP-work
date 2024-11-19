@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = new Users();
 
         // Create the user in the database
-        if ($user->createUser($user_data['fullname'], $user_data['username'], $user_data['email'], $user_data['password'])) {
+        if ($user->createUser($user_data['fullname'], $user_data['username'], $user_data['email'], $user_data['gender'], $user_data['password'])) {
             // User successfully created, clear session and redirect
             unset($_SESSION['otp']); // Clear the OTP from the session
             unset($_SESSION['user_data']); // Clear user data from the session
