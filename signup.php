@@ -64,6 +64,12 @@ class Signup
                                 </span>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
                             </div>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Gender</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                                <option value="3">Prefer not to say</option>
+                            </select>
 
                             <label for="password" class="form-label">Password</label>
                             <div class="mb-1 input-group">
@@ -72,13 +78,6 @@ class Signup
                                 </span>
                                 <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
                             </div>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Gender</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                                <option value="3">Prefer not to say</option>
-                            </select>
-
                             <div class="mb-4 text-center">
                                 <button type="submit" name='signup' class="btn btn-secondary">Sign Up</button>
                             </div>

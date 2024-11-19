@@ -40,9 +40,9 @@ class display {
                             <td>{$user['email']}</td>
                             <td>{$user['gender']}</td>
                             <td>
-                                <a href='edit.php?id={$user['userId']}'>Edit</a>
+                                <a href='edit.php?userId={$user['userId']}'>Edit</a>
                                 <form action='delete.php' method='POST' style='display:inline;'>
-                                    <input type='hidden' name='id' value='{$user['userId']}'>
+                                    <input type='hidden' name='userId' value='{$user['userId']}'>
                                     <button type='submit'>Delete</button>
                                 </form>
                             </td>

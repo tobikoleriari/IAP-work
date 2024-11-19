@@ -48,26 +48,30 @@ class phpHandler
         header('Location: phpHandler.php');
     }
 
-    public function fetchSingleUser($id)
-    {
-        $sql = "SELECT * FROM users WHERE id = :id";
+    public function fetchSingleUser($userId) {
+        $sql = "SELECT * FROM users WHERE userId = :userId";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT); // Bind parameter properly
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
-    public function update($id,$fullname,$username,$email,$gender,$password)
-    {
-        $sql = "UPDATE users SET fullname = ?, username = ?, email =? gender =? WHERE id = :id";
-        $params = [$fullname,$username,$email,$id];
+    
+    public function update($fullname, $username, $email, $gender, $password, $id) {
+        $sql = "UPDATE users SET fullname = :fullname, username = :username, email = :email, gender = :gender, password = :password WHERE userId = :id";
+        $params = [
+            'fullname' => $fullname,
+            'username' => $username,
+            'email' => $email,
+            'gender' => $gender,
+            'password' => $password,
+            'id' => $id
+        ];
         $stmt = $this->db->prepare($sql);
         return $stmt->execute($params);
-
     }
-    public function delete($id)
+    public function delete($userId)
     {
-        $stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
-        return $stmt->execute(['id' => $id]);
+        $stmt = $this->db->prepare("DELETE FROM users WHERE userId = :userId");
+        return $stmt->execute(['userId' => $userId]);
     }
 }
