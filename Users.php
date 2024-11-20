@@ -12,7 +12,7 @@ class Users {
 
     public function createUser( $fullname, $username, $email,$gender, $password) {
         // Create the user by inserting the data using phpHandler
-        return $this->dbHandler->insertData($fullname, $email, $username,$gender, $password);
+        return $this->dbHandler->insertData($fullname,$username,$email,$gender, $password);
     }
 }
 ?>

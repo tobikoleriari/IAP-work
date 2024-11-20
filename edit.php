@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $gender = $_POST['gender'];
 
-    if ($user->update($fullname, $username, $email, $gender, $password, $userId)) {
+    if ($user->update($fullname,  $username, $email, $gender, $password, $userId)) {
         header("Location: userTable.php");
     } else {
         echo "Error updating user.";
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="fullname" class="form-label">Full Name:</label>
                 <input type="text" name="fullname" id="fullname" class="form-control" value="<?= htmlspecialchars($data['fullname']) ?>" required>
             </div>
-            
+
             <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>
                 <input type="text" name="username" id="username" class="form-control" value="<?= htmlspecialchars($data['username']) ?>" required>

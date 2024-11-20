@@ -13,13 +13,13 @@ class phpHandler
         $this->db = $conn;
     }
     //insert user data
-    public function insertData($fullname,$username, $email, $password,$gender)
+    public function insertData($fullname,$username, $email,$gender, $password,)
     {
         try {
             // Check if username or email already exists
-            $sql = "SELECT COUNT(*) FROM users WHERE username = :username OR email = :email";
+            $sql = "SELECT COUNT(*) FROM users WHERE username = :username";
             $stmt = $this->db->prepare($sql);
-            $stmt->execute(['username' => $username, 'email' => $email]);
+            $stmt->execute(['username' => $username]);
             $count = $stmt->fetchColumn();
 
             if ($count > 0) {
@@ -27,9 +27,9 @@ class phpHandler
             }
 
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO users(fullname,username,email,gender,password) VALUES(:fullname,:username, :email,:gender, :password)";
+            $sql = "INSERT INTO users(fullname,username,email,gender,password) VALUES(:fullname,:username,:email,:gender, :password)";
             $stmt = $this->db->prepare($sql);
-            $stmt->execute(['fullname' => $fullname,'username' => $username, 'email' => $email, 'gender' =>$gender, 'password' => $hashedPassword]);
+            $stmt->execute(['fullname' => $fullname,'username' => $username,'email' => $email,'gender' =>$gender, 'password' => $hashedPassword]);
 
             return true;
         } catch (PDOException $e) {

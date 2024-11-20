@@ -25,6 +25,7 @@ class SendMail
                 $fullname = trim($_POST['fullname']);
                 $username = trim($_POST['username']);
                 $email = trim($_POST['email']);
+                $gender = trim($_POST['gender']);
                 $password = trim($_POST['password']);
                 // $confirm_password = trim($_POST['confirm_password']);
 
@@ -35,6 +36,7 @@ class SendMail
                     'fullname' => $fullname,
                     'username' => $username,
                     'email' => $email,
+                    'gender' => $gender,
                     'password' => $password
                 ];
                 //Load Composer's autoloader
